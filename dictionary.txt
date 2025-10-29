@@ -1,0 +1,4 @@
+examine v To test someone's ability
+orange n name of a color and a fruit
+run v to move fast
+run n an act of running

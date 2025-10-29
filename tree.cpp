@@ -13,7 +13,9 @@ class BinarySearchTree {
     private:
         TreeNode* root;
         // with root
-        TreeNode* insert(TreeNode* root, int val) {
+        
+    public:
+    TreeNode* insert(TreeNode* root, int val) {
             if(!root) {
                 return new TreeNode(val);
             }
@@ -91,11 +93,47 @@ class BinarySearchTree {
         int max(int first, int second) {
             return first>=second ? first: second;
         }
-    public:
         BinarySearchTree() {
             root = nullptr;
         }
         void insert(int val) {
             root = insert(root, val);
         }   
+        void inorder(TreeNode* rootNode) {
+            if(!rootNode)
+                return;
+            inorder(rootNode->left);
+            cout << rootNode -> value << " ";    
+            inorder(rootNode->right);
+        }
+        void displayInOrder() {
+            inorder(root);
+            cout << "\n";
+        }
+        int height() {
+            return findHeight(root);
+        }
 };
+
+int main() {
+    BinarySearchTree bst;
+
+    // Insert values
+    bst.insert(10);
+    bst.insert(5);
+    bst.insert(15);
+    bst.insert(3);
+    bst.insert(7);
+    bst.insert(12);
+    bst.insert(18);
+    bst.displayInOrder();
+
+    // Search test
+    cout << "Searching 7: " << (bst.search(7) ? "Found" : "Not Found") << endl;
+    cout << "Searching 20: " << (bst.search(20) ? "Found" : "Not Found") << endl;
+
+    // Height test
+    cout << "Height of tree: " << bst.height() << endl; // optional — change if you want to pass bst.root
+
+    return 0;
+}
